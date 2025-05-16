@@ -1,0 +1,74 @@
+type Initialized @entity(immutable: true) {
+  id: Bytes!
+  version: Int! # uint8
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type MulitplierFeeRateSet @entity(immutable: true) {
+  id: Bytes!
+  setter: Bytes! # address
+  multiplier: BigInt! # uint256
+  feeRate: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewPrimaryModelEventCreated @entity(immutable: true) {
+  id: Bytes!
+  primaryModelEvent: Bytes! # address
+  _issuedToken: Bytes! # address
+  _paymentToken: Bytes! # address
+  _depositStartTime: BigInt! # uint256
+  _depositDuration: BigInt! # uint256
+  _launchTime: BigInt! # uint256
+  _feeRate: BigInt! # uint256
+  _needAutoDistribution: Boolean! # bool
+  _isPaymentNative: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type NewUnlimitedModelEventCreated @entity(immutable: true) {
+  id: Bytes!
+  unlimitedModelEvent: Bytes! # address
+  _issuedToken: Bytes! # address
+  _paymentToken: Bytes! # address
+  _depositStartTime: BigInt! # uint256
+  _depositDuration: BigInt! # uint256
+  _launchTime: BigInt! # uint256
+  _needAutoDistribution: Boolean! # bool
+  _isPaymentNative: Boolean! # bool
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type RecoverErc20 @entity(immutable: true) {
+  id: Bytes!
+  recipient: Bytes! # address
+  token: Bytes! # address
+  amount: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SetFeeCollector @entity(immutable: true) {
+  id: Bytes!
+  _feeCollector: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type SetPrimaryImplementation @entity(immutable: true) {
+  id: Bytes!
+  _primaryImplementation: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
