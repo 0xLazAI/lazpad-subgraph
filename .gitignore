@@ -399,3 +399,14 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+# Hardhat files
+cache
+artifacts
+
+docker/data/
+
+lazpad/node_modules
+lazpad/build
+lazpad/generated

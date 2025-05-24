@@ -1,74 +1,80 @@
-type Initialized @entity(immutable: true) {
-  id: Bytes!
-  version: Int! # uint8
+type Issue @entity(immutable: false){
+  id: ID!
+  type: String!
+  issuer: String!
+  issueToken: String!
+  paymentToken: String
+  depositStart: BigInt!
+  duration: BigInt!
+  launchTime: BigInt!
+  price: BigInt!
+  issuedTokenAmount: BigInt!
+  targetRaised: BigInt!
+  minDeposit: BigInt!
+  maxDeposit: BigInt
+  storageIssuedTokenAmount: BigInt!
+  feeRate: BigInt
+  hasFeeCharged: Boolean
+  stopped: Boolean
+  needAutoDistribution: Boolean
+  isPaymentNative: Boolean
+  soldOut: Boolean
+  participantsSize: BigInt!
+  paymentTokenReserve: BigInt!
   blockNumber: BigInt!
-  blockTimestamp: BigInt!
+  createTimestamp: BigInt!
+  updateTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type MulitplierFeeRateSet @entity(immutable: true) {
-  id: Bytes!
-  setter: Bytes! # address
-  multiplier: BigInt! # uint256
-  feeRate: BigInt! # uint256
+type UserInvestment @entity(immutable: false){
+  id: ID! #issueAddress_userAddress
+  user: String!
+  issue: String!
+  issueToken: String! 
+  allocation: BigInt!
+  balance: BigInt!
+  refunds: BigInt!
+  hasClaimedRefunds: Boolean!
+  hasClaimedIssuedToken: Boolean!
+  hasEmergencyWithdraw: Boolean
   blockNumber: BigInt!
-  blockTimestamp: BigInt!
+  createTimestamp: BigInt!
+  updateTimestamp: BigInt!
   transactionHash: Bytes!
 }
 
-type NewPrimaryModelEventCreated @entity(immutable: true) {
-  id: Bytes!
-  primaryModelEvent: Bytes! # address
-  _issuedToken: Bytes! # address
-  _paymentToken: Bytes! # address
-  _depositStartTime: BigInt! # uint256
-  _depositDuration: BigInt! # uint256
-  _launchTime: BigInt! # uint256
-  _feeRate: BigInt! # uint256
-  _needAutoDistribution: Boolean! # bool
-  _isPaymentNative: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type UserDeposit @entity(immutable: false){
+    id: ID!#transactionHash
+    user: String!
+    issue: String!
+    issueToken: String! 
+    buyAmount: BigInt!
+    blockNumber: BigInt!
+    createTimestamp: BigInt!
+    updateTimestamp: BigInt!
+    transactionHash: Bytes!
 }
 
-type NewUnlimitedModelEventCreated @entity(immutable: true) {
-  id: Bytes!
-  unlimitedModelEvent: Bytes! # address
-  _issuedToken: Bytes! # address
-  _paymentToken: Bytes! # address
-  _depositStartTime: BigInt! # uint256
-  _depositDuration: BigInt! # uint256
-  _launchTime: BigInt! # uint256
-  _needAutoDistribution: Boolean! # bool
-  _isPaymentNative: Boolean! # bool
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type UserAllocation @entity(immutable: false){
+    id: ID!
+    user: String!
+    issueAddress: String!
+    issueToken: String!
+    allocation: BigInt!
+    blockNumber: BigInt!
+    createTimestamp: BigInt!
+    updateTimestamp: BigInt!
+    transactionHash: Bytes!
 }
 
-type RecoverErc20 @entity(immutable: true) {
-  id: Bytes!
-  recipient: Bytes! # address
-  token: Bytes! # address
-  amount: BigInt! # uint256
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type SetFeeCollector @entity(immutable: true) {
-  id: Bytes!
-  _feeCollector: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
-}
-
-type SetPrimaryImplementation @entity(immutable: true) {
-  id: Bytes!
-  _primaryImplementation: Bytes! # address
-  blockNumber: BigInt!
-  blockTimestamp: BigInt!
-  transactionHash: Bytes!
+type UserRefund @entity(immutable: false){
+    id: ID!#issueAddress_userAddress
+    user: String!
+    issueToken: String! 
+    refundAmount: BigInt!
+    blockNumber: BigInt!
+    createTimestamp: BigInt!
+    updateTimestamp: BigInt!
+    transactionHash: Bytes!
 }
